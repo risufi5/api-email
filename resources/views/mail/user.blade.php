@@ -8,11 +8,11 @@
 <ul>
     @foreach($details as $user)
         <li>
-            <p>{{ $user['name'] }} has written:</p>
+            <p>{{ $user->name }} has written:</p>
             <ul>
-                @foreach($user['posts'] as $post)
+                @foreach($user->posts as $post)
                     <li>
-                        {{ $post['title'] }}
+                        {{ $post->title }}
                     </li>
                 @endforeach
             </ul>

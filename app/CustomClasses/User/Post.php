@@ -4,10 +4,10 @@ namespace App\CustomClasses\User;
 
 class Post
 {
-    protected $userId;
-    protected $id;
-    protected $title;
-    protected $body;
+    public $userId;
+    public $id;
+    public $title;
+    public $body;
 
     public function __construct(array $postData)
     {

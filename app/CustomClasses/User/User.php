@@ -8,15 +8,15 @@ class User
 {
     protected static $userUrl = 'https://jsonplaceholder.typicode.com/users';
     protected static $postUrl = 'https://jsonplaceholder.typicode.com/posts';
-    protected $id;
-    protected $name;
-    protected $username;
-    protected $email;
-    protected $address;
-    protected $phone;
-    protected $website;
-    protected $company;
-    protected $posts;
+    public $id;
+    public $name;
+    public $username;
+    public $email;
+    public $address;
+    public $phone;
+    public $website;
+    public $company;
+    public $posts;
 
     public function __construct(array $userData)
     {
@@ -37,7 +37,7 @@ class User
         foreach ($users as $user) {
             $user = new User($user);
             $user->fetchPosts();
-            $userData[] = $user->toArray();
+            $userData[] = $user;
         }
         return $userData;
     }
@@ -47,23 +47,8 @@ class User
         $posts = Http::get(static::$postUrl . '?userId=' . $this->id)->json();
         $postData = array();
         for ($i = 0; $i < 3; $i++) {
-            $postData[] = $posts[$i];
+            $postData[] = new Post($posts[$i]);
         }
         $this->posts = $postData;
-    }
-
-    public function toArray()
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'username' => $this->username,
-            'email' => $this->email,
-            'address' => $this->address,
-            'phone' => $this->phone,
-            'website' => $this->website,
-            'company' => $this->company,
-            'posts' => $this->posts
-        ];
     }
 }
