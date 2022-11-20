@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Http;
 
 class User
 {
-    protected static $userUrl = 'https://jsonplaceholder.typicode.com/users';
-    protected static $postUrl = 'https://jsonplaceholder.typicode.com/posts';
+    protected static $usersUrl = 'https://jsonplaceholder.typicode.com/users';
+    protected static $postsUrl = 'https://jsonplaceholder.typicode.com/posts';
     public $id;
     public $name;
     public $username;
@@ -32,7 +32,7 @@ class User
 
     public static function fetchUsers(): array
     {
-        $users = Http::get(static::$userUrl)->json();
+        $users = Http::get(static::$usersUrl)->json();
         $userData = array();
         foreach ($users as $user) {
             $user = new User($user);
@@ -44,7 +44,7 @@ class User
 
     public function fetchPosts()
     {
-        $posts = Http::get(static::$postUrl . '?userId=' . $this->id)->json();
+        $posts = Http::get(static::$postsUrl . '?userId=' . $this->id)->json();
         $postData = array();
         for ($i = 0; $i < 3; $i++) {
             $postData[] = new Post($posts[$i]);

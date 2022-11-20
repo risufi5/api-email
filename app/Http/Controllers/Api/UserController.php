@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Api;
 
 use App\CustomClasses\User\User;
 use App\Http\Controllers\Controller;
 use App\Mail\UserMail;
 use Illuminate\Support\Facades\Mail;
-use function response;
 
 class UserController extends Controller
 {
